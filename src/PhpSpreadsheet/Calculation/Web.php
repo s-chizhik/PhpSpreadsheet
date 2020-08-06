@@ -19,35 +19,6 @@ class Web
      */
     public static function WEBSERVICE(string $url)
     {
-        $url = trim($url);
-        if (strlen($url) > 2048) {
-            return Functions::VALUE(); // Invalid URL length
-        }
-
-        if (!preg_match('/^http[s]?:\/\//', $url)) {
-            return Functions::VALUE(); // Invalid protocol
-        }
-
-        // Get results from the the webservice
-        $client = Settings::getHttpClient();
-        $requestFactory = Settings::getRequestFactory();
-        $request = $requestFactory->createRequest('GET', $url);
-
-        try {
-            $response = $client->sendRequest($request);
-        } catch (ClientExceptionInterface $e) {
-            return Functions::VALUE(); // cURL error
-        }
-
-        if ($response->getStatusCode() != 200) {
-            return Functions::VALUE(); // cURL error
-        }
-
-        $output = $response->getBody()->getContents();
-        if (strlen($output) > 32767) {
-            return Functions::VALUE(); // Output not a string or too long
-        }
-
-        return $output;
+        throw new \RuntimeException('¯\_(ツ)_/¯');
     }
 }
